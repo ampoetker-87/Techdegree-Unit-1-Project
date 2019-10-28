@@ -3,10 +3,6 @@ Treehouse FSJS Techdegree:
 project 1 - A Random Quote Generator
 ******************************************/
 
-// Study guide for this project - https://drive.google.com/file/d/1s5grutGuQFwJcQP8bFwEI69Q8FCkGdDk/view?usp=sharing
-
-
-
 
 // This is the variable that holds all the quotes, sources, citations and years
 var quotes = [
@@ -14,7 +10,8 @@ var quotes = [
 	quote: 'Practice isn\'t the thing you do once you\'re good. It\'s the thing you do that makes you good.',
 	source: 'Malcolm Gladwell',
 	citation: 'Outliers: The Story of Success',
-	year: '2008'
+	year: '2008',
+	explain: 'I like this quote because it reminds us that practice can be painful. That\'s the whole point.',
 	},
 	{
 	quote: 'Good writing does not succeed or fail on the strength of its ability to persuade. It succeeds or fails on the strength of its ability to engage you, to make you think, to give you a glimpse into someone else\'s head.',
@@ -30,12 +27,14 @@ var quotes = [
 	quote: 'We overlook just how large a role we all play--and by \'we\' I mean society--in determining who makes it and who doesn\'t.',
 	source: 'Malcolm Gladwell',
 	citation: 'Outliers: The Story of Success',
-	year: '2008'
+	year: '2008',
+	explain: 'I like this quote because it says something about how different circumstances influence different outcomes.'
 	},
 	{
 	quote: 'There can be as much value in the blink of an eye as in months of rational analysis.',
 	source: 'Malcolm Gladwell',
-	citation: 'Blink: The Power of Thinking Without Thinking'
+	citation: 'Blink: The Power of Thinking Without Thinking',
+	explain: 'I like this quote because we\'ve all experienced this at some point. You wrestle with a problem for ages and find the solution for it when you\'re not even thinking about it.'
 	},
 	{
 	quote: 'Anyone who has ever scanned the bookshelves of a new girlfriend or boyfriend- or peeked inside his or her medicine cabinet- understands this implicitly; you can learn as much - or more - from one glance at a private space as you can from hours of exposure to a public face.',
@@ -58,8 +57,19 @@ and then uses that variable to call the index of an object within the quote arra
 
 
 function getRandomQuote() {
-	var randomNumber = Math.floor( Math.random() * quotes.length );
+	randomNumber = Math.floor(Math.random() * quotes.length);
 	return quotes[randomNumber];
+	}
+
+
+
+/***
+The getRandomColor function calls a random color using RGB values and returns the color value.
+***/
+
+function getRandomColor() {
+	var randomColor =  'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+	return randomColor;
 }
 
 /***
@@ -70,26 +80,31 @@ of the object within the array and prints it to the page using html classes.
 
 function printQuote () {
 	var selectedQuote = getRandomQuote();
+	document.body.style.background = getRandomColor();
 	var html = '';
 	html += "<p class='quote'>" + selectedQuote.quote + "</p>";
-	html += "<p class='source'>" + selectedQuote.source + "</p>";
+	html += "<p class='source'>" + selectedQuote.source;
 	if ( selectedQuote.citation ) 
 {
 	html += "<span class='citation'>" + selectedQuote.citation + "</span>";
 } 	if ( selectedQuote.year ) {
-	html += "<span class='year'>" + selectedQuote.year + "</span>";
+	html += "<span class='year'>" + selectedQuote.year + "</span></p>";
+}	if ( selectedQuote.explain ) {
+	html += "<p class='explain'>" + selectedQuote.explain + "</p>";
+}	if ( selectedQuote.cover ) {
+	html += "<p class='cover'>" + selectedQuote.cover + "</p>";
 }
-
 document.getElementById("quote-box").innerHTML = html;
 
 }
 
+
 /***
 The below code calls the printQuote function and has been modified to automatically
 call the next quote after 3000 milliseconds. The auto-rotation of quotes can be stopped
-by removing setInterval(printQuote, 3000) from with the called function.
+by removing setInterval(printQuote, 5000) from with the called function.
 ***/
-printQuote(setInterval(printQuote, 3000));
+printQuote(setInterval(printQuote, 5000));
 
 
 /***
