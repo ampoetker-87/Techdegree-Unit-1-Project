@@ -91,8 +91,6 @@ function printQuote () {
 	html += "<span class='year'>" + selectedQuote.year + "</span></p>";
 }	if ( selectedQuote.explain ) {
 	html += "<p class='explain'>" + selectedQuote.explain + "</p>";
-}	if ( selectedQuote.cover ) {
-	html += "<p class='cover'>" + selectedQuote.cover + "</p>";
 }
 document.getElementById("quote-box").innerHTML = html;
 
